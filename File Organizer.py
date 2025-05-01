@@ -3,7 +3,7 @@ import shutil
 
 
 path=input("Enter path: ")
-files=os.listdir(path)
+files = list(os.walk(path))[0][2] # get only the files, not folders
 
 for file in files:
     filename,extension=os.path.splitext(file)
