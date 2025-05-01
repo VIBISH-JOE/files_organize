@@ -6,6 +6,10 @@ path=input("Enter path: ")
 files = [os.path.abspath(i) for i in list(os.walk(path))[0][2] ]
 
 for file in files:
+    if os.path.samefile(__file__, file):
+        # dont do anything to current file
+        continue
+
     filename,extension=os.path.splitext(file)
     extension = extension[1:]
     exten=""
