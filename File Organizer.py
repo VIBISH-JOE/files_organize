@@ -1,7 +1,5 @@
 import os
 import shutil
-import tkinter
-import customtkinter
 
 
 path=input("Enter path: ")
