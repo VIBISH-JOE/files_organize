@@ -2,7 +2,7 @@ import os
 import shutil
 
 
-path=input("Enter path: ")
+path=os.path.abspath(input("Enter path: "))
 files = [os.path.abspath(i) for i in list(os.walk(path))[0][2] ]
 
 for file in files:
