@@ -1,13 +1,15 @@
 import os
 import shutil
-import tkinter
-import customtkinter
 
 
-path=input("Enter path: ")
-files=os.listdir(path)
+path=os.path.abspath(input("Enter path: "))
+files = [os.path.abspath(i) for i in list(os.walk(path))[0][2] ]
 
 for file in files:
+    if os.path.samefile(__file__, file):
+        # dont do anything to current file
+        continue
+
     filename,extension=os.path.splitext(file)
     extension = extension[1:]
     exten=""
@@ -32,8 +34,7 @@ for file in files:
     else:
         exten=extension
 
-    if os.path.exists(path+'/'+exten):
-        shutil.move(path+'/'+file, path+'/'+exten+'/'+file)
-    else:
-        os.makedirs(path+'/'+exten,)
-        shutil.move(path+'/'+file, path+'/'+exten+'/'+file)
+    category_dir = os.path.join(path, exten)
+    if not os.path.exists(category_dir):
+        os.makedirs(category_dir)
+    shutil.move(file, category_dir)
