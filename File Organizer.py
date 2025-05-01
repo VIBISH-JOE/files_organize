@@ -34,8 +34,7 @@ for file in files:
     else:
         exten=extension
 
-    if os.path.exists(path+'/'+exten):
-        shutil.move(path+'/'+file, path+'/'+exten+'/'+file)
-    else:
-        os.makedirs(path+'/'+exten,)
-        shutil.move(path+'/'+file, path+'/'+exten+'/'+file)
+    category_dir = os.path.join(path, exten)
+    if not os.path.exists(category_dir):
+        os.makedirs(category_dir)
+    shutil.move(file, category_dir)
